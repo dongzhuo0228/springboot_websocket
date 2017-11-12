@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-1.8.1.js" type="text/javascript"></script>
+ 
+ <script type="text/javascript" src="js/socket.io.js"></script>
+</head>
+<body>
+<button id="sendBtn">发送消息</button>
+
+<button id="leaveBtn">离开</button>
+</body>
+<script type="text/javascript">
+    var socket=io.connect('169.254.215.27:10443'),//与服务器进行连接
+        send=document.getElementById('sendBtn'),
+        leave=document.getElementById('leaveBtn');
+
+    send.onclick=function(){//发送事件
+        socket.emit('getFileFlagEvent', {"name":"dongzhuo"});
+    }
+
+    leave.onclick=function(){
+        window.location.href="about:blank";
+        window.close()
+  //      socket.emit('leave', 'leave');
+    }
+
+    //接收来自服务端的信息事件c_hi
+    socket.on('getFileFlagEvent',function(msg){//接收事件
+        alert(msg.name)
+    })
+</script>
+</html>
