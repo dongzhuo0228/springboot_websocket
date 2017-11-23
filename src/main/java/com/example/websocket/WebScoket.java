@@ -164,7 +164,7 @@ public class WebScoket implements ApplicationListener<ApplicationEvent>{
                 UUID sessionId = client.getSessionId();
                 logger.info("getFileFlagEvent client sessionId = {}",sessionId);
                 logger.info("getFileFlagEvent client User = {}",JSON.toJSON(data));
-                client.sendEvent("getFileFlagEvent", data);
+                client.sendEvent("getFileFlagEvent1", data);
             }
         });
 	}

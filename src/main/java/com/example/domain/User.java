@@ -12,9 +12,15 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 	private String name;
+	private String username;
+	private String password;
 	@JSONField(format = "yyyy-MM-dd HH:mm")
 	private Date createTime;
-
+    
+	
+	private Role roles;
+	
+	
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -48,4 +54,33 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Role getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Role roles) {
+		this.roles = roles;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
+	
 }

@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.annotation.CurrentUser;
 import com.example.domain.User;
 import com.example.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -36,4 +38,12 @@ public class UserController {
 //		map.put("index", listS);
 		return new ModelAndView("index");
       }
+	
+	@RequestMapping("/demo/listDemo")
+	public List<User> getListDemo(@RequestBody @CurrentUser User user){
+		 PageHelper.startPage(1,1);  
+//		 int i = userService.countItem();
+//		 System.out.println("返回数据大小为"+i);
+	      return userService.selectList(); 
+     }
 }

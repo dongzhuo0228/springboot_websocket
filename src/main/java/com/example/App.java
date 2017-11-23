@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.HttpMessageConverter;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -19,6 +20,7 @@ import com.github.pagehelper.PageHelper;
 @SpringBootApplication
 @MapperScan("com.example.mapper")//mybaits要扫描的包
 @Configuration
+@ImportResource("classpath:threadPool-config.xml")
 //@EnableScheduling
 public class App {
 	public static void main(String[] args) {
@@ -60,5 +62,9 @@ public class App {
       pageHelper.setProperties(properties);
       return pageHelper;
    }
+	/*@Bean
+	public ExecutorService getThreadPool(){
+		return Executors.newFixedThreadPool(10);
+	}*/
 	
 }
