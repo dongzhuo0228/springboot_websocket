@@ -63,29 +63,15 @@
 			<artifactId>xalan</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>com.mysema.commons</groupId>
-        	<artifactId>mysema-commons-lang</artifactId>
-        	<version>0.2.4</version>
-        </dependency>
-        <!-- 批处理框架支持 -->
-         <!--  <dependency>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-starter-batch</artifactId>
-           </dependency> -->
-           <dependency>  
-			    <groupId>redis.clients</groupId>  
-			    <artifactId>jedis</artifactId>  
-           </dependency>
-           <dependency>  
-                 <groupId>com.github.pagehelper</groupId>  
-       			 <artifactId>pagehelper</artifactId>  
-   				 <version>4.1.6</version>
-			</dependency> 
+		<dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-activemq</artifactId>  
+        </dependency>  
+        <dependency>  
+               <groupId>com.github.pagehelper</groupId>  
+     			 <artifactId>pagehelper</artifactId>  
+ 				 <version>4.1.6</version>
+	    </dependency> 
 			<!-- <dependency>  
 			    <groupId>org.springframework.boot</groupId>  
 			    <artifactId>spring-boot-starter-websocket</artifactId>  
@@ -95,17 +81,7 @@
 			    <artifactId>druid</artifactId>
 			    <version>1.0.9</version>
 			</dependency> -->
-			<dependency>  
-		        <groupId>org.apache.activemq</groupId>  
-		        <artifactId>activemq-pool</artifactId>  
-            </dependency>
-			<!-- <dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>
-					spring-boot-starter-data-cassandra
-				</artifactId>
-			</dependency> -->
-				  <dependency>
+		<dependency>
 	        <groupId>io.springfox</groupId>
 	        <artifactId>springfox-swagger2</artifactId>
 	        <version>2.6.1</version>
@@ -126,7 +102,20 @@
             <artifactId>netty-socketio</artifactId>
             <version>1.7.7</version>
         </dependency>
-		</dependencies>
+        <!--mongodb配置  -->
+         <!-- <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+        </dependency> -->
+         <dependency>
+         	<groupId>redis.clients</groupId>
+         	<artifactId>jedis</artifactId>
+         </dependency>
+         <dependency>
+         	<groupId>org.springframework.boot</groupId>
+         	<artifactId>spring-boot-starter-data-redis</artifactId>
+         </dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -139,6 +128,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

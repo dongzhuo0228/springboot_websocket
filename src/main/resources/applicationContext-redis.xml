@@ -1,0 +1,57 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+    xmlns:redis="http://www.springframework.org/schema/redis"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-34.0.xsd     
+                            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
+                            http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+                            http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd">
+    <description>spring-data-redis配置</description>
+
+    <bean id="redisConnectionFactory"
+        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${spring.redis.url}"></property>
+        <property name="port" value="${spring.redis.port}"></property>
+        <property name="usePool" value="true"></property>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="redisConnectionFactory"></property>
+    </bean>
+
+    <bean id="jdkSerializer"
+        class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+
+    <bean id="smsMessageListener"
+        class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <property name="delegate" ref="smsMessageDelegateListener" />
+        <property name="serializer" ref="jdkSerializer" />
+    </bean>
+
+    <bean id="sendMessage" class="com.example.biz.SendMessage">
+        <property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+
+    <redis:listener-container>
+        <redis:listener ref="smsMessageListener" method="handleMessage"
+            serializer="jdkSerializer" topic="sms_queue_web_online" />
+    </redis:listener-container>
+
+    <!-- jedis -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="300" /> <!-- 最大能够保持idel状态的对象数  -->
+        <property name="maxTotal" value="60000" /> <!-- 最大分配的对象数 -->
+        <property name="testOnBorrow" value="true" /> <!-- 当调用borrow Object方法时，是否进行有效性检查 -->
+    </bean>
+
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg index="1" value="${spring.redis.url}" />
+        <constructor-arg index="2" value="${spring.redis.port}" type="int" />
+    </bean>
+
+</beans>

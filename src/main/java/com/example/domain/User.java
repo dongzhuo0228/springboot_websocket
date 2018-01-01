@@ -14,6 +14,7 @@ public class User {
 	private String name;
 	private String username;
 	private String password;
+	private String token;
 	@JSONField(format = "yyyy-MM-dd HH:mm")
 	private Date createTime;
     
@@ -21,6 +22,14 @@ public class User {
 	private Role roles;
 	
 	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}

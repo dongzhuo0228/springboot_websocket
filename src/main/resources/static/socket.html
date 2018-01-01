@@ -8,6 +8,10 @@
  <script type="text/javascript" src="js/socket.io.js"></script>
 </head>
 <body>
+<textarea rows="8" cols="20" id="te" >
+ 
+</textarea>
+
 <button id="sendBtn">发送消息</button>
 
 <button id="leaveBtn">离开</button>
@@ -18,7 +22,8 @@
         leave=document.getElementById('leaveBtn');
 
     send.onclick=function(){//发送事件
-        socket.emit('getFileFlagEvent', {"name":"dongzhuo"});
+    	var value = $('#te').val();
+        socket.emit('getFileFlagEvent', {"name":value});
     }
 
     leave.onclick=function(){

@@ -160,11 +160,13 @@ public class WebScoket implements ApplicationListener<ApplicationEvent>{
 		//获取文件落成状态事件
         server.addEventListener("getFileFlagEvent", User.class, new DataListener<User>() {
             @Override
-            public void onData(SocketIOClient client, User data, AckRequest ackRequest) {
+            public void onData(SocketIOClient client, User data, AckRequest ackRequest) throws InterruptedException {
                 UUID sessionId = client.getSessionId();
                 logger.info("getFileFlagEvent client sessionId = {}",sessionId);
                 logger.info("getFileFlagEvent client User = {}",JSON.toJSON(data));
                 client.sendEvent("getFileFlagEvent1", data);
+                Thread.sleep(2000);
+                client.sendEvent("getFileFlagEvent1", "dddd");
             }
         });
 	}

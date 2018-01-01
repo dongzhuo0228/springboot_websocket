@@ -20,9 +20,9 @@ import com.github.pagehelper.PageHelper;
 @SpringBootApplication
 @MapperScan("com.example.mapper")//mybaits要扫描的包
 @Configuration
-@ImportResource("classpath:threadPool-config.xml")
+@ImportResource({"classpath:threadPool-config.xml"/*,"classpath:applicationContext-redis.xml"*/})
 //@EnableScheduling
-public class App {
+public class App{
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
@@ -62,9 +62,5 @@ public class App {
       pageHelper.setProperties(properties);
       return pageHelper;
    }
-	/*@Bean
-	public ExecutorService getThreadPool(){
-		return Executors.newFixedThreadPool(10);
-	}*/
-	
+
 }
