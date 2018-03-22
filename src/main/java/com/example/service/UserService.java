@@ -9,7 +9,7 @@ public interface UserService {
 
 
 	public User findUser();
-	List<User> selectList();
+	List<User> selectList(User user);
 	public int countItem();
 
 }

@@ -6,7 +6,7 @@ import java.util.Properties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -22,10 +22,15 @@ import com.github.pagehelper.PageHelper;
 @Configuration
 @ImportResource({"classpath:threadPool-config.xml"/*,"classpath:applicationContext-redis.xml"*/})
 //@EnableScheduling
-public class App{
+public class App /* extends SpringBootServletInitializer*/ {
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
+	/*@Override
+	protected SpringApplicationBuilder configure(
+			SpringApplicationBuilder builder) {
+		return builder.sources(App.class);
+	}*/
     /**
      * 
      * <pre>

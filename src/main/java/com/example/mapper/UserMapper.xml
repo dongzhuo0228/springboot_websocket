@@ -10,8 +10,8 @@
       INSERT INTO users(name,createTime) VALUES(#{name}, #{createTime})
    </insert>
    
-   <select id="getAll" resultType="user">
-       select id,name from users 
+   <select id="getAll" resultType="user" parameterType="user">
+       select id,name from users where NAME LIKE CONCAT('%',#{name},'%')
    </select>
    <select id="countItem" resultType="int">
        select count(*) from users 

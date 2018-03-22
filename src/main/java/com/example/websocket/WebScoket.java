@@ -118,7 +118,7 @@ public class WebScoket implements ApplicationListener<ApplicationEvent>{
 	    try{
 //	        String hostName = InetAddress.getLocalHost().getHostAddress();
 	        String hostName = "169.254.215.27";
-	        String serverPort = "10443";
+	        String serverPort = "10442";
 	        logger.info("websocket hostName={},serverPort={}",hostName,serverPort);
 	        if (hostName != null) {
 		        this.setHostName(hostName);

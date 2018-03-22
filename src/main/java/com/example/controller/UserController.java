@@ -2,7 +2,6 @@ package com.example.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.jms.Destination;
 
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.annotation.Authorization;
 import com.example.annotation.CurrentUser;
-import com.example.domain.TokenModel;
 import com.example.domain.User;
 import com.example.jms.Producer;
 import com.example.reidsdao.RedisCacheRepository;
@@ -44,7 +42,7 @@ public class UserController extends BaseController{
 		 PageHelper.startPage(1,10);  
 //		 int i = userService.countItem();
 //		 System.out.println("返回数据大小为"+i);
-	      return userService.selectList(); 
+	      return userService.selectList(null); 
       }
 	
 	@RequestMapping("/demo/index")
@@ -54,12 +52,12 @@ public class UserController extends BaseController{
 		return new ModelAndView("index");
       }
 	
-	@RequestMapping("/demo/listDemo")
+	@RequestMapping(value="/demo/listDemo",consumes="application/json")
 	public List<User> getListDemo(@RequestBody @CurrentUser User user){
-		 PageHelper.startPage(1,1);  
+		 PageHelper.startPage(1,10);  
 //		 int i = userService.countItem();
 //		 System.out.println("返回数据大小为"+i);
-	      return userService.selectList(); 
+	      return userService.selectList(user); 
      }
 	@Authorization
 	@RequestMapping("/update")
@@ -78,13 +76,13 @@ public class UserController extends BaseController{
 	@RequestMapping(value = "/login") 
 	public Map login(@RequestBody User user){
 		User u = new User();
-		if("1".equals(user.getName()) && "1".equals(user.getPassword())){
+		/*if("1".equals(user.getName()) && "1".equals(user.getPassword())){
 			u.setId(12);
 			u.setName(user.getName());
-			u.setPassword(user.getPassword());
+//			u.setPassword(user.getPassword());
 			TokenModel model = tokenManager.createToken(u.getId());
 			return responseOK(model);
-		}
+		}*/
 		return responseError("登录失败");
 	}
 }

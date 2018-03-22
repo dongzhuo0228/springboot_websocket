@@ -1,28 +1,28 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import javax.persistence.GeneratedValue;
 
+import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
-
-import com.alibaba.fastjson.annotation.JSONField;
 public class User {
 	@Id
 	@GeneratedValue
+	@Field("id")
 	private Integer id;
+	@Field("name")
 	private String name;
-	private String username;
+	
+	/*private String username;
 	private String password;
 	private String token;
 	@JSONField(format = "yyyy-MM-dd HH:mm")
 	private Date createTime;
     
 	
-	private Role roles;
+	private Role roles;*/
 	
 	
-	public String getToken() {
+	/*public String getToken() {
 		return token;
 	}
 
@@ -36,19 +36,27 @@ public class User {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}*/
+
+
+
+	public User() {
+		super();
 	}
+
+	
 
 	public Integer getId() {
 		return id;
 	}
 
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public User() {
-		super();
-	}
+
 
 	public User(Integer id, String name) {
 		super();
@@ -64,7 +72,7 @@ public class User {
 		this.name = name;
 	}
 
-	public Role getRoles() {
+	/*public Role getRoles() {
 		return roles;
 	}
 
@@ -79,8 +87,8 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
+	}*/
+/*
 	public String getPassword() {
 		return password;
 	}
@@ -88,6 +96,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+*/
+	public User(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
 	
 	
 	
